@@ -14,7 +14,7 @@ export function AdminDashboard() {
   const load = useCallback(async () => {
     try {
       const query = filter === "all" ? "" : `?committee=${encodeURIComponent(filter)}`;
-      const response = await fetch(`/api/attendance${query}`, { cache: "no-store" });
+      const response = await fetch(`/api/attendance${query}`, { cache: "no-store", credentials: "include" });
       if (response.status === 401) {
         window.location.href = "/admin/login";
         return;
@@ -39,7 +39,7 @@ export function AdminDashboard() {
   const visibleRows = useMemo(() => data?.rows || [], [data]);
 
   async function logout() {
-    await fetch("/api/admin/logout", { method: "POST" });
+    await fetch("/api/admin/logout", { method: "POST", credentials: "include" });
     window.location.href = "/admin/login";
   }
 

@@ -9,12 +9,14 @@ export async function POST(request: Request) {
     }
 
     const response = NextResponse.json({ ok: true });
+    const isHttps = process.env.NODE_ENV === "production" || request.headers.get("x-forwarded-proto") === "https";
     response.cookies.set(ADMIN_COOKIE, createAdminToken(), {
       httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
+      // The preview is embedded in an iframe. None keeps the session cookie available there.
+      sameSite: isHttps ? "none" : "lax",
+      secure: isHttps,
       path: "/",
-      maxAge: 60 * 60 * 12,
+      maxAge: 60 * 60 * 24 * 7,
     });
     return response;
   } catch {
