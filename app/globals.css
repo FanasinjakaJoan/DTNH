@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #fbfaf7;
+}
+
+body {
+  margin: 0;
+  color: #17202a;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(237, 108, 47, 0.11), transparent 26rem),
+    #fbfaf7;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+a:focus-visible {
+  outline: 4px solid rgba(237, 108, 47, 0.35);
+  outline-offset: 3px;
+}
+
+::selection {
+  color: #fff;
+  background: #ed6c2f;
+}
